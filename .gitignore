@@ -1,0 +1,59 @@
+# ---- Dependencies ----
+node_modules/
+.pnp
+.pnp.js
+frontend/node_modules/
+backend/.venv/
+backend/venv/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ---- Build / output ----
+.next/
+out/
+build/
+dist/
+frontend/.next/
+frontend/out/
+*.tsbuildinfo
+next-env.d.ts
+
+# ---- Environment / secrets ----
+.env
+.env*.local
+.env.local
+*.pem
+
+# ---- Logs ----
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# ---- Editor / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# ---- Agent / assistant artifacts (never publish) ----
+.claude/
+CLAUDE.md
+AGENTS.md
+.cursor/
+.aider*
+
+# ---- Docs / markdown (kept out of the repo by request) ----
+*.md
+!.keep
+
+# ---- Source problem statement & private material ----
+*.pdf
+problem_explanation_*.pdf
+
+# ---- Data artifacts that are large or regenerable ----
+backend/data/raw/
+*.onnx.bak
