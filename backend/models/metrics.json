@@ -1,0 +1,24 @@
+{
+  "forecast": {
+    "mae": 5199.0,
+    "mae_pct_of_typical_ncf": 34.6,
+    "r2": 0.582,
+    "directional_accuracy": 0.792,
+    "horizon_months": 6,
+    "n_enterprises": 25,
+    "n_holdout_points": 150
+  },
+  "risk": {
+    "auc": 0.963,
+    "accuracy": 0.894,
+    "n_samples": 525,
+    "positive_rate": 0.19
+  },
+  "sector_driver_r2": {
+    "dairy": 0.358,
+    "poultry": 0.52,
+    "food_processing": 0.421,
+    "handicrafts": 0.688,
+    "rural_retail": 0.388
+  }
+}
