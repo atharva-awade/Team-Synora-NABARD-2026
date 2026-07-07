@@ -1,9 +1,9 @@
 {
   "forecast": {
-    "mae": 5199.0,
-    "mae_pct_of_typical_ncf": 34.6,
-    "r2": 0.582,
-    "directional_accuracy": 0.792,
+    "mae": 4854.0,
+    "mae_pct_of_typical_ncf": 32.3,
+    "r2": 0.647,
+    "directional_accuracy": 0.772,
     "horizon_months": 6,
     "n_enterprises": 25,
     "n_holdout_points": 150
@@ -15,10 +15,10 @@
     "positive_rate": 0.19
   },
   "sector_driver_r2": {
-    "dairy": 0.358,
-    "poultry": 0.52,
-    "food_processing": 0.421,
-    "handicrafts": 0.688,
-    "rural_retail": 0.388
+    "dairy": 0.369,
+    "poultry": 0.553,
+    "food_processing": 0.484,
+    "handicrafts": 0.675,
+    "rural_retail": 0.48
   }
 }

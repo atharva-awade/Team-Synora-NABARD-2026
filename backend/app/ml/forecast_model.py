@@ -28,7 +28,7 @@ from dataclasses import dataclass, field
 
 import numpy as np
 import pandas as pd
-from sklearn.linear_model import Ridge
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
 from ..sectors import SECTORS
@@ -100,23 +100,30 @@ def fit_baseline(hist: pd.DataFrame) -> Baseline:
 # Per-sector driver-response model
 # --------------------------------------------------------------------------- #
 
+# Domain-correct effect direction of each driver on net cash flow. Magnitudes
+# are learned from data; signs are fixed so the model is always physically
+# sensible (a monsoon delay can never *raise* a forecast in the simulator).
+DRIVER_SIGNS = np.array([+1.0, -1.0, +1.0, +1.0, +1.0, +1.0])  # matches DRIVER_COLS
+
+
 @dataclass
 class SectorDriverModel:
     sector: str
-    model: Ridge
+    coef: np.ndarray                 # signed linear coefficients (len == 6)
+    intercept: float
     driver_means: np.ndarray
     metrics: dict = field(default_factory=dict)
 
     def predict_fraction(self, drivers: np.ndarray) -> np.ndarray:
-        return self.model.predict(drivers)
+        drivers = np.atleast_2d(drivers).astype(float)
+        return drivers @ self.coef + self.intercept
 
     def contributions(self, drivers: np.ndarray, scale: float,
                       seasonal: float = 1.0) -> dict[str, float]:
         """Exact per-driver rupee contribution (Shapley for a linear model)."""
-        coef = self.model.coef_
         contrib = {}
         for i, col in enumerate(DRIVER_COLS):
-            contrib[col] = float(coef[i] * (drivers[i] - self.driver_means[i]) * scale * seasonal)
+            contrib[col] = float(self.coef[i] * (drivers[i] - self.driver_means[i]) * scale * seasonal)
         return contrib
 
 
@@ -149,16 +156,22 @@ def fit_sector_driver_model(sector_key: str, sector_hist: pd.DataFrame,
     X = np.vstack(rows_X)
     y = np.concatenate(rows_y)
 
-    model = Ridge(alpha=1.0)
-    model.fit(X, y)
-    pred = model.predict(X)
+    # Sign-transform so every expected effect is non-negative, fit with a
+    # non-negativity constraint, then flip signs back. This yields learned
+    # magnitudes with domain-correct, monotone directions.
+    Xs = X * DRIVER_SIGNS
+    lr = LinearRegression(positive=True)
+    lr.fit(Xs, y)
+    coef = DRIVER_SIGNS * lr.coef_
+    pred = X @ coef + lr.intercept_
     metrics = {
         "r2_fraction": float(r2_score(y, pred)),
         "n_samples": int(len(y)),
     }
     return SectorDriverModel(
         sector=sector_key,
-        model=model,
+        coef=coef,
+        intercept=float(lr.intercept_),
         driver_means=X.mean(axis=0),
         metrics=metrics,
     )
