@@ -60,9 +60,9 @@ function Core({ scroll }: { scroll: MutableRefObject<number> }) {
   useFrame((state, delta) => {
     if (!group.current) return;
     group.current.rotation.y += delta * 0.18;
-    const s = 1 - scroll.current * 0.35;
-    group.current.scale.setScalar(THREE.MathUtils.clamp(s, 0.4, 1));
-    group.current.position.y = -scroll.current * 1.2;
+    const s = 0.68 - scroll.current * 0.28;
+    group.current.scale.setScalar(THREE.MathUtils.clamp(s, 0.3, 0.68));
+    group.current.position.y = 0.7 - scroll.current * 1.4;
     group.current.rotation.z = scroll.current * 0.6;
   });
 
@@ -91,7 +91,7 @@ function Core({ scroll }: { scroll: MutableRefObject<number> }) {
 export default function HeroScene({ scroll }: { scroll: MutableRefObject<number> }) {
   return (
     <Canvas
-      camera={{ position: [0, 0, 6.5], fov: 45 }}
+      camera={{ position: [0, 0, 7.6], fov: 45 }}
       dpr={[1, 1.8]}
       gl={{ antialias: true, alpha: true }}
       style={{ pointerEvents: "none" }}

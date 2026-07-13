@@ -26,13 +26,22 @@ export function Hero() {
   return (
     <section ref={ref} className="relative min-h-[100svh] overflow-hidden">
       {/* backdrop */}
-      <div className="grid-bg radial-fade absolute inset-0 -z-10" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,var(--brand-soft),transparent)]" />
+      <div className="grid-bg radial-fade absolute inset-0 -z-20" />
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(60%_50%_at_50%_0%,var(--brand-soft),transparent)]" />
 
       {/* 3D layer */}
-      <div className="absolute inset-0 -z-0">
+      <div className="absolute inset-0 z-0">
         <HeroScene scroll={scrollProgress} />
       </div>
+
+      {/* legibility scrim: lightens the centre so copy stays readable over the 3D */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "radial-gradient(ellipse 58% 62% at 50% 48%, color-mix(in srgb, var(--bg) 90%, transparent) 0%, color-mix(in srgb, var(--bg) 62%, transparent) 42%, transparent 78%)",
+        }}
+      />
 
       {/* copy */}
       <motion.div
