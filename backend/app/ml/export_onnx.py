@@ -62,6 +62,58 @@ def export_risk_onnx(store) -> Path:
     return path
 
 
+def export_risk_trees(store) -> Path:
+    """Export the GradientBoosting ensemble as compact JSON so the browser can
+    run the exact same early-warning model on-device with a ~40-line evaluator
+    and zero runtime dependencies. Verified against sklearn's decision_function.
+    """
+    gbc = store.risk_model.model
+    n_feat = len(RISK_FEATURES)
+    init_raw = float(gbc._raw_predict_init(np.zeros((1, n_feat), dtype=float))[0, 0])
+
+    trees = []
+    for est in gbc.estimators_[:, 0]:
+        t = est.tree_
+        trees.append({
+            "feature": [int(f) for f in t.feature],
+            "threshold": [float(round(x, 6)) for x in t.threshold],
+            "left": [int(x) for x in t.children_left],
+            "right": [int(x) for x in t.children_right],
+            "value": [float(round(v[0][0], 6)) for v in t.value],
+        })
+
+    payload = {
+        "features": RISK_FEATURES,
+        "init": init_raw,
+        "learning_rate": float(gbc.learning_rate),
+        "trees": trees,
+    }
+
+    # Verify a pure-python (== JS) evaluator matches sklearn.
+    def evaluate(x):
+        raw = init_raw
+        for tr in trees:
+            node = 0
+            while tr["feature"][node] >= 0:
+                node = tr["left"][node] if x[tr["feature"][node]] <= tr["threshold"][node] else tr["right"][node]
+            raw += payload["learning_rate"] * tr["value"][node]
+        return 1.0 / (1.0 + np.exp(-raw))
+
+    hist0 = store.history(store.profiles[3]["id"])
+    feats = [risk_features_at(hist0, len(hist0) - 1)[c] for c in RISK_FEATURES]
+    mine = evaluate(feats)
+    skl = gbc.predict_proba(np.array([feats]))[0, 1]
+    assert abs(mine - skl) < 1e-4, (mine, skl)
+
+    out_dir = FRONTEND_PUBLIC / "models"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "risk_trees.json"
+    path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
+    print(f"  risk_trees.json OK (js={mine:.4f} vs sklearn={skl:.4f}), "
+          f"{path.stat().st_size/1024:.0f} KB, {len(trees)} trees")
+    return path
+
+
 def build_forecast_params(store) -> dict:
     """Compact params so the what-if simulator can recompute forecasts in JS,
     exactly mirroring forecast_model.forecast_enterprise()."""
@@ -148,6 +200,8 @@ def main() -> None:
     store = get_store()
     print("Exporting risk model to ONNX ...")
     export_risk_onnx(store)
+    print("Exporting risk trees to JSON (on-device evaluator) ...")
+    export_risk_trees(store)
     print("Building offline data bundle ...")
     bundle = build_bundle(store)
     out_dir = FRONTEND_PUBLIC / "data"

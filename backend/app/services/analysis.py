@@ -139,7 +139,8 @@ def _assess_risk(store: Store, hist: pd.DataFrame,
 
 def _history_records(hist: pd.DataFrame, months: int = 24) -> list[dict]:
     cols = ["month", "income", "expenses", "net_cashflow", "cash_balance",
-            "savings", "loan_outstanding", "upi_txn_count", "active_shock"]
+            "savings", "loan_outstanding", "repayment_due", "repayment_made",
+            "upi_txn_count", "active_shock"]
     tail = hist[cols].tail(months).copy()
     tail["month"] = tail["month"].dt.strftime("%Y-%m")
     return tail.to_dict(orient="records")

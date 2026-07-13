@@ -33,6 +33,8 @@ export interface HistoryPoint {
   cash_balance: number;
   savings: number;
   loan_outstanding: number;
+  repayment_due: number;
+  repayment_made: number;
   upi_txn_count: number;
   active_shock: string;
 }

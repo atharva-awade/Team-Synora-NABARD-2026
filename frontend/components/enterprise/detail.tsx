@@ -10,6 +10,7 @@ import { loadBundle } from "@/lib/data";
 import { computeWhatIf } from "@/lib/forecast";
 import type { Bundle, EnterpriseDetail } from "@/lib/types";
 import { CashflowChart } from "@/components/charts/cashflow-chart";
+import { DataEntry } from "@/components/enterprise/data-entry";
 import { ContributionBars, RadialGauge } from "@/components/charts/primitives";
 import { RiskBadge, Pill } from "@/components/ui/badge";
 import { formatINR, formatINRFull, riskColorVar, cn } from "@/lib/utils";
@@ -109,6 +110,7 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         {/* forecast + simulator */}
         <div className="space-y-6">
+          {owner && <DataEntry bundle={bundle} detail={detail} />}
           <div className="card-lg p-6">
             <div className="mb-4 flex items-center justify-between">
               <div>
