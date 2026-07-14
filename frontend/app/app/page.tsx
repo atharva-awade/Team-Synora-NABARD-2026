@@ -6,8 +6,10 @@ import { AppShell } from "@/components/app/app-shell";
 import { EnterpriseDetailView } from "@/components/enterprise/detail";
 import { loadBundle } from "@/lib/data";
 import type { PortfolioCard } from "@/lib/types";
+import { useI18n } from "@/lib/i18n";
 
 export default function OwnerAppPage() {
+  const { t } = useI18n();
   const [list, setList] = useState<PortfolioCard[]>([]);
   const [id, setId] = useState<string>("");
 
@@ -25,8 +27,8 @@ export default function OwnerAppPage() {
     <AppShell>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-display text-2xl font-semibold text-ink">My enterprise</h1>
-          <p className="text-sm text-ink-muted">Your financial co-pilot — records, forecast, alerts and next steps.</p>
+          <h1 className="font-display text-2xl font-semibold text-ink">{t("owner.title")}</h1>
+          <p className="text-sm text-ink-muted">{t("owner.sub")}</p>
         </div>
         <label className="relative inline-flex items-center">
           <span className="sr-only">Select enterprise</span>

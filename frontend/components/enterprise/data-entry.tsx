@@ -6,7 +6,8 @@ import { Cpu, Plus, WifiOff, RotateCcw } from "lucide-react";
 import type { Bundle, EnterpriseDetail, HistoryPoint } from "@/lib/types";
 import { scoreOnDevice } from "@/lib/risk-model";
 import { RiskBadge } from "@/components/ui/badge";
-import { formatINR, riskColorVar, cn } from "@/lib/utils";
+import { riskColorVar, cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 const FIELDS = [
   { key: "income", label: "Income this month", placeholder: "e.g. 45000" },
@@ -17,6 +18,7 @@ const FIELDS = [
 ] as const;
 
 export function DataEntry({ bundle, detail }: { bundle: Bundle; detail: EnterpriseDetail }) {
+  const { t } = useI18n();
   const last = detail.history[detail.history.length - 1];
   const [form, setForm] = useState<Record<string, string>>({
     income: String(last.income),
@@ -61,10 +63,10 @@ export function DataEntry({ bundle, detail }: { bundle: Bundle; detail: Enterpri
     <div className="card-lg p-6">
       <div className="mb-1 flex items-center gap-2">
         <Cpu className="h-5 w-5 text-brand" />
-        <h2 className="text-lg font-semibold text-ink">Record this month</h2>
+        <h2 className="text-lg font-semibold text-ink">{t("entry.title")}</h2>
       </div>
       <p className="mb-5 flex items-center gap-1.5 text-sm text-ink-muted">
-        <WifiOff className="h-3.5 w-3.5" /> Runs the AI model on your device — no network needed.
+        <WifiOff className="h-3.5 w-3.5" /> {t("entry.offline")}
       </p>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -89,7 +91,7 @@ export function DataEntry({ bundle, detail }: { bundle: Bundle; detail: Enterpri
           disabled={busy}
           className="ring-focus inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-white shadow-[var(--shadow-brand)] transition-colors hover:bg-brand-deep disabled:opacity-60"
         >
-          <Plus className="h-4 w-4" /> {busy ? "Computing…" : "Update my outlook"}
+          <Plus className="h-4 w-4" /> {busy ? "…" : t("entry.submit")}
         </button>
         {result && (
           <button onClick={() => setResult(null)} className="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-ink">

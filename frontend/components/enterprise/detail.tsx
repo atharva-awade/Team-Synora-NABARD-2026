@@ -14,6 +14,8 @@ import { DataEntry } from "@/components/enterprise/data-entry";
 import { ContributionBars, RadialGauge } from "@/components/charts/primitives";
 import { RiskBadge, Pill } from "@/components/ui/badge";
 import { formatINR, formatINRFull, riskColorVar, cn } from "@/lib/utils";
+import { useI18n, speak } from "@/lib/i18n";
+import { Volume2 } from "lucide-react";
 
 const SLIDERS = [
   { key: "d_input_cost", label: "Input / feed cost", icon: "🌾", min: -0.3, max: 0.6 },
@@ -27,6 +29,7 @@ function adverseDelta(driver: string): number {
 }
 
 export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?: boolean }) {
+  const { t, lang } = useI18n();
   const [bundle, setBundle] = useState<Bundle | null>(null);
   const [shocks, setShocks] = useState<Record<string, number>>({});
 
@@ -97,13 +100,13 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
 
       {/* vitals */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Vital icon={Droplets} label="Liquidity runway" value={`${v.liquidity_runway_months}`} unit="months"
+        <Vital icon={Droplets} label={t("vitals.runway")} value={`${v.liquidity_runway_months}`} unit="months"
           tone={v.liquidity_runway_months < 1.5 ? "risk" : v.liquidity_runway_months < 3 ? "watch" : "good"} />
-        <Vital icon={Activity} label="Income volatility" value={`${(v.income_volatility * 100).toFixed(0)}`} unit="%"
+        <Vital icon={Activity} label={t("vitals.volatility")} value={`${(v.income_volatility * 100).toFixed(0)}`} unit="%"
           tone={v.income_volatility > 1 ? "risk" : v.income_volatility > 0.5 ? "watch" : "good"} />
-        <Vital icon={Gauge} label="Repayment capacity" value={v.repayment_capacity === null ? "—" : `${v.repayment_capacity.toFixed(1)}×`} unit="of EMI"
+        <Vital icon={Gauge} label={t("vitals.repay")} value={v.repayment_capacity === null ? "—" : `${v.repayment_capacity.toFixed(1)}×`} unit="of EMI"
           tone={v.repayment_capacity !== null && v.repayment_capacity < 1 ? "risk" : "good"} />
-        <Vital icon={Wallet} label="Avg net cash flow" value={formatINR(v.avg_monthly_net_cashflow)} unit="/ month"
+        <Vital icon={Wallet} label={t("vitals.ncf")} value={formatINR(v.avg_monthly_net_cashflow)} unit="/ month"
           tone={v.avg_monthly_net_cashflow < 0 ? "risk" : "good"} />
       </div>
 
@@ -114,8 +117,8 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
           <div className="card-lg p-6">
             <div className="mb-4 flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-ink">Cash-flow forecast</h2>
-                <p className="text-sm text-ink-muted">24 months history · {detail.horizon_months}-month AI forecast</p>
+                <h2 className="text-lg font-semibold text-ink">{t("forecast.title")}</h2>
+                <p className="text-sm text-ink-muted">24 months {t("forecast.sub")}</p>
               </div>
               {hasShock && <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-medium text-accent-deep">What-if scenario</span>}
             </div>
@@ -127,7 +130,7 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-brand" />
-                <h2 className="text-lg font-semibold text-ink">Climate &amp; market simulator</h2>
+                <h2 className="text-lg font-semibold text-ink">{t("sim.title")}</h2>
               </div>
               {hasShock && (
                 <button onClick={() => setShocks({})} className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs text-ink-muted transition-colors hover:text-ink">
@@ -194,10 +197,10 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
           <div className="card-lg p-6">
             <div className="flex items-center gap-2">
               <ShieldAlert className="h-5 w-5" style={{ color: riskColorVar(scenario.riskBand) }} />
-              <h2 className="text-lg font-semibold text-ink">Risk assessment</h2>
+              <h2 className="text-lg font-semibold text-ink">{t("risk.title")}</h2>
             </div>
             <div className="mt-4 flex items-center gap-5">
-              <RadialGauge value={scenario.riskScore} label={scenario.riskBand} sublabel="stress risk" color={riskColorVar(scenario.riskBand)} />
+              <RadialGauge value={scenario.riskScore} label={t(`band.${scenario.riskBand}`)} sublabel={t("risk.stress")} color={riskColorVar(scenario.riskBand)} />
               <div className="flex-1 space-y-2">
                 <div className="text-xs font-medium uppercase tracking-wide text-ink-faint">Top drivers</div>
                 {detail.risk.top_factors.slice(0, 4).map((f) => (
@@ -214,14 +217,14 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
 
           {/* explainability */}
           <div className="card-lg p-6">
-            <h2 className="text-lg font-semibold text-ink">Why this forecast?</h2>
+            <h2 className="text-lg font-semibold text-ink">{t("why.title")}</h2>
             <p className="mb-4 text-sm text-ink-muted">Exact factor contributions over the {detail.horizon_months}-month horizon.</p>
             <ContributionBars items={summed} />
           </div>
 
           {/* credit readiness */}
           <div className="card-lg p-6">
-            <h2 className="text-lg font-semibold text-ink">Credit readiness</h2>
+            <h2 className="text-lg font-semibold text-ink">{t("credit.title")}</h2>
             <div className="mt-3 flex items-center gap-5">
               <RadialGauge value={detail.credit_readiness.score} label={detail.credit_readiness.band}
                 color={detail.credit_readiness.score >= 70 ? "var(--risk-low)" : detail.credit_readiness.score >= 45 ? "var(--accent)" : "var(--ink-faint)"} />
@@ -240,7 +243,16 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
 
       {/* actions */}
       <div className="card-lg p-6">
-        <h2 className="mb-4 text-lg font-semibold text-ink">Recommended actions</h2>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-ink">{t("actions.title")}</h2>
+          <button
+            onClick={() => speak(
+              detail.actions.map((a) => `${a.title}. ${a.detail}`).join(" "), lang)}
+            className="ring-focus inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs text-ink-muted transition-colors hover:text-ink"
+          >
+            <Volume2 className="h-3.5 w-3.5" /> {t("listen")}
+          </button>
+        </div>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {detail.actions.map((a) => (
             <div key={a.title} className={cn(
