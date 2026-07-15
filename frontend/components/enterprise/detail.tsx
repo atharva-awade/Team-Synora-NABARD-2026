@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import {
   ArrowLeft, Gauge, Activity, ShieldAlert, Wallet, Droplets, RotateCcw, Sparkles, TrendingDown, TrendingUp,
+  type LucideIcon,
 } from "lucide-react";
 import { loadBundle } from "@/lib/data";
 import { computeWhatIf } from "@/lib/forecast";
@@ -279,7 +280,7 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
 }
 
 function Vital({ icon: Icon, label, value, unit, tone }: {
-  icon: React.ElementType; label: string; value: string; unit: string; tone: "risk" | "watch" | "good";
+  icon: LucideIcon; label: string; value: string; unit: string; tone: "risk" | "watch" | "good";
 }) {
   const color = tone === "risk" ? "var(--risk-high)" : tone === "watch" ? "var(--risk-watch)" : "var(--risk-low)";
   return (

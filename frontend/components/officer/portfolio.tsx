@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { AlertTriangle, TrendingUp, Users, Wallet, Search, ArrowRight } from "lucide-react";
+import { AlertTriangle, TrendingUp, Users, Wallet, Search, ArrowRight, type LucideIcon } from "lucide-react";
 import { loadBundle } from "@/lib/data";
 import type { Bundle, PortfolioCard } from "@/lib/types";
 import { RiskBadge } from "@/components/ui/badge";
@@ -124,7 +124,7 @@ export function PortfolioView() {
 }
 
 function Stat({ icon: Icon, label, value, sub, tone }: {
-  icon: React.ElementType; label: string; value: string; sub: string; tone?: "risk" | "good";
+  icon: LucideIcon; label: string; value: string; sub: string; tone?: "risk" | "good";
 }) {
   const color = tone === "risk" ? "var(--risk-high)" : tone === "good" ? "var(--risk-low)" : "var(--brand)";
   return (

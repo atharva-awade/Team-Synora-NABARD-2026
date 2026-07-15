@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
+import { PwaRegister } from "@/components/providers/pwa-register";
 import { I18nProvider } from "@/lib/i18n";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider>
           <I18nProvider>
             <SmoothScroll>{children}</SmoothScroll>
+            <PwaRegister />
           </I18nProvider>
         </ThemeProvider>
       </body>
