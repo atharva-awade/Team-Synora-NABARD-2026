@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "motion/react";
+import { useInView } from "motion/react";
 import { ArrowRight, Code2 } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
@@ -105,7 +105,7 @@ export function ValueCreation() {
           </Reveal>
           <Reveal delay={2}>
             <p className="mt-4 text-ink-muted">
-              Pravah maps directly onto NABARD's four value-creation goals — turning underserved,
+              Pravah maps directly onto NABARD&apos;s four value-creation goals — turning underserved,
               thin-file enterprises into visible, credit-ready participants in the formal economy.
             </p>
           </Reveal>

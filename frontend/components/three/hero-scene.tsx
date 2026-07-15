@@ -12,16 +12,29 @@ import * as THREE from "three";
  * renders offline and passes strict CSP.
  */
 
+// Small seeded PRNG so the particle field is deterministic (pure render, and
+// identical between server and client).
+function mulberry32(seed: number) {
+  return () => {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 function SignalField({ scroll }: { scroll: MutableRefObject<number> }) {
   const ref = useRef<THREE.Points>(null);
   const count = 1100;
 
   const positions = useMemo(() => {
+    const rand = mulberry32(1337);
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 2.4 + Math.random() * 3.6;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
+      const r = 2.4 + rand() * 3.6;
+      const theta = rand() * Math.PI * 2;
+      const phi = Math.acos(2 * rand() - 1);
       arr[i * 3] = r * Math.sin(phi) * Math.cos(theta);
       arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       arr[i * 3 + 2] = r * Math.cos(phi);
