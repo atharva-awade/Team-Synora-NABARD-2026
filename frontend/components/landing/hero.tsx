@@ -1,12 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import dynamic from "next/dynamic";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, ShieldCheck, WifiOff, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const HeroScene = dynamic(() => import("@/components/three/hero-scene"), { ssr: false });
 
 const badges = [
   { icon: ShieldCheck, label: "PII-free by design" },
@@ -16,30 +13,23 @@ const badges = [
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  const scrollProgress = useRef(0);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  useMotionValueEvent(scrollYProgress, "change", (v) => (scrollProgress.current = v));
 
   const textY = useTransform(scrollYProgress, [0, 1], [0, 140]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
     <section ref={ref} className="relative min-h-[100svh] overflow-hidden">
-      {/* backdrop */}
-      <div className="grid-bg radial-fade absolute inset-0 -z-20" />
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(60%_50%_at_50%_0%,var(--brand-soft),transparent)]" />
+      {/* subtle grid texture over the global island backdrop */}
+      <div className="grid-bg radial-fade absolute inset-0 -z-[1]" />
 
-      {/* 3D layer */}
-      <div className="absolute inset-0 z-0">
-        <HeroScene scroll={scrollProgress} />
-      </div>
-
-      {/* legibility scrim: lightens the centre so copy stays readable over the 3D */}
+      {/* legibility scrim: lightens the centre so copy stays readable over the
+          global flying-island backdrop */}
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse 58% 62% at 50% 48%, color-mix(in srgb, var(--bg) 90%, transparent) 0%, color-mix(in srgb, var(--bg) 62%, transparent) 42%, transparent 78%)",
+            "radial-gradient(ellipse 62% 66% at 50% 48%, color-mix(in srgb, var(--bg) 80%, transparent) 0%, color-mix(in srgb, var(--bg) 46%, transparent) 46%, transparent 82%)",
         }}
       />
 

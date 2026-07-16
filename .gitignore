@@ -59,4 +59,6 @@ problem_explanation_*.pdf
 backend/data/raw/
 backend/models/*.joblib
 backend/models/portfolio.json
+# 3D source asset lives here but is served (and committed) from frontend/public
+backend/models/*.glb
 *.onnx.bak
