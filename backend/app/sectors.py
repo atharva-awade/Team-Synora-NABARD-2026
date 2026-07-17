@@ -9,7 +9,7 @@ handicraft demand peaks across the Oct-Feb festival/wedding season, poultry is
 highly exposed to feed-grain price swings and heat stress).
 
 The values are deliberately expressed as interpretable coefficients so that a
-forecast can always be decomposed back into "why" — the core of Pravah's
+forecast can always be decomposed back into "why", the core of Pravah's
 explainable-by-default design.
 
 Months are 1-12 (Jan-Dec). Seasonal phase is expressed as the peak month.
@@ -215,7 +215,7 @@ SECTORS: dict[str, Sector] = {
         playbook={
             "market_disruption": "Diversify suppliers and keep 2-3 weeks of fast-moving stock to ride out supply gaps.",
             "demand_slump": "Extend small trusted credit lines around harvest to retain customers; lean on UPI-based offers.",
-            "monsoon_delay": "A weak monsoon cuts local purchasing power 1-2 months out — trim slow inventory and protect cash now.",
+            "monsoon_delay": "A weak monsoon cuts local purchasing power 1-2 months out, trim slow inventory and protect cash now.",
             "liquidity": "Keep working capital light in lean months; concentrate stock-up ahead of the post-harvest and festival peaks.",
         },
     ),

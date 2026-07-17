@@ -65,7 +65,7 @@ export function Proof() {
           </Reveal>
           <Reveal delay={2}>
             <p className="mt-4 text-lg text-ink-muted">
-              Trained on simulated multi-sector data with walk-forward backtests — no cherry-picking,
+              Trained on simulated multi-sector data with walk-forward backtests, no cherry-picking,
               no black box. These are the numbers, and every prediction shows its working.
             </p>
           </Reveal>
@@ -106,7 +106,7 @@ export function ValueCreation() {
           </Reveal>
           <Reveal delay={2}>
             <p className="mt-4 text-ink-muted">
-              Pravah maps directly onto NABARD&apos;s four value-creation goals — turning underserved,
+              Pravah maps directly onto NABARD&apos;s four value-creation goals, turning underserved,
               thin-file enterprises into visible, credit-ready participants in the formal economy.
             </p>
           </Reveal>
@@ -140,7 +140,7 @@ export function CTA() {
               Foresight for every rural enterprise
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/80">
-              Explore the live prototype — both the owner and field-officer experiences, powered by
+              Explore the live prototype, both the owner and field-officer experiences, powered by
               real models running end to end.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

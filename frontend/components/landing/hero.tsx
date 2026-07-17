@@ -24,7 +24,7 @@ export function Hero() {
       {/* subtle grid texture over the global island backdrop */}
       <div className="grid-bg radial-fade absolute inset-0 -z-[1]" />
 
-      {/* clean, contained legibility scrim behind the copy — no text glow, so
+      {/* clean, contained legibility scrim behind the copy, no text glow, so
           the type stays crisp with no fuzzy halo, while the island reads clearly */}
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
@@ -69,7 +69,7 @@ export function Hero() {
           transition={{ delay: 0.45, duration: 0.7 }}
           className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted"
         >
-          Pravah forecasts cash flow and flags financial stress for rural micro-enterprises —
+          Pravah forecasts cash flow and flags financial stress for rural micro-enterprises -
           learning from UPI, market and climate signals, never personal data. Explainable,
           offline-first, built for the last mile.
         </motion.p>

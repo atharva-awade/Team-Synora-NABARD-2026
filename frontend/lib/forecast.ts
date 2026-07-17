@@ -25,7 +25,7 @@ export interface WhatIfResult {
 
 /**
  * Recompute the forecast (and a forecast-consistent scenario risk) under driver
- * shocks entirely in the browser — mirroring the backend's forecast_enterprise
+ * shocks entirely in the browser, mirroring the backend's forecast_enterprise
  * and _assess_risk so online and offline agree.
  *
  * `shocks` maps a driver column (e.g. "d_input_cost") to an additive delta.

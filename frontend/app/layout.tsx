@@ -15,9 +15,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Pravah — AI Cash-Flow Intelligence for Rural India",
+  title: "Pravah: AI Cash-Flow Intelligence for Rural India",
   description:
-    "Pravah predicts cash flow and flags financial risk for rural micro-enterprises using UPI, market and climate signals — explainable, offline-first, privacy-safe.",
+    "Pravah predicts cash flow and flags financial risk for rural micro-enterprises using UPI, market and climate signals, explainable, offline-first, privacy-safe.",
   applicationName: "Pravah",
   keywords: ["rural finance", "NABARD", "cash flow prediction", "risk flagging", "SHG", "FPO", "AI"],
 };

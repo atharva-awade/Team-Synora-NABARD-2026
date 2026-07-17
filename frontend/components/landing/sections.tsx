@@ -34,7 +34,7 @@ export function HowItWorks() {
       <SectionHeading
         eyebrow="How it works"
         title="From scattered signals to a clear path forward"
-        sub="Underused rural data becomes predictive foresight — in three steps."
+        sub="Underused rural data becomes predictive foresight, in three steps."
       />
 
       <Reveal delay={2}>
@@ -72,7 +72,7 @@ export function Novelties() {
         <SectionHeading
           eyebrow="What sets Pravah apart"
           title="Six ideas most teams won't build"
-          sub="Not hackathon gimmicks — each one solves a real problem in rural credit."
+          sub="Not hackathon gimmicks, each one solves a real problem in rural credit."
         />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {NOVELTIES.map((n, i) => (
@@ -117,7 +117,7 @@ const personas = [
     href: "/officer",
     cta: "Open officer view",
     features: [
-      "Risk board — every enterprise ranked Low / Watch / High",
+      "Risk board, every enterprise ranked Low / Watch / High",
       "Drill into profiles, forecasts and the drivers behind each flag",
       "Credit-readiness pipeline: who's ready to graduate to formal credit",
       "Prioritised action queue for timely field intervention",

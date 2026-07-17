@@ -11,7 +11,7 @@ useGLTF.preload(MODEL_URL);
 /**
  * Landing hero backdrop: the flying island sits centred at the origin while the
  * camera revolves around it on scroll. Motion is buttery because the camera is
- * NEVER bound to raw scroll — a target is derived from scroll and the actual
+ * NEVER bound to raw scroll, a target is derived from scroll and the actual
  * camera spherical coords are exponentially damped toward it every frame
  * (frame-rate independent), on top of Lenis-smoothed page scrolling.
  */
@@ -142,7 +142,7 @@ export default function IslandScene({
       <pointLight position={[-6, 2, -4]} intensity={35} color="#24bfa9" />
       <pointLight position={[6, 3, 3]} intensity={22} color="#ecb457" />
 
-      {/* Baked once, no external HDR — subtle reflections, offline/CSP safe. */}
+      {/* Baked once, no external HDR, subtle reflections, offline/CSP safe. */}
       <Environment resolution={256} frames={1}>
         <Lightformer intensity={2.2} position={[0, 6, -6]} scale={12} color="#ffffff" />
         <Lightformer intensity={1.1} position={[-6, 1, 2]} scale={8} color="#24bfa9" />

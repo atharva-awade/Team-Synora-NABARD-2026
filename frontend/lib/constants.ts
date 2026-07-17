@@ -12,7 +12,7 @@ export const METRICS = {
 
 export const SIGNALS = [
   { key: "financial", label: "Financial records", detail: "Savings, loans, repayments, balances", icon: "💰" },
-  { key: "upi", label: "UPI transaction proxies", detail: "Velocity & seasonality — never personal data", icon: "📲" },
+  { key: "upi", label: "UPI transaction proxies", detail: "Velocity & seasonality, never personal data", icon: "📲" },
   { key: "market", label: "Market intelligence", detail: "Commodity & input prices, demand trends", icon: "📈" },
   { key: "climate", label: "Climate & seasonality", detail: "Monsoon, heat, crop calendars", icon: "🌦️" },
 ];
@@ -21,12 +21,12 @@ export const STEPS = [
   {
     n: "01",
     title: "Ingest multi-source signals",
-    body: "Pravah blends self-reported financials with anonymised UPI proxies, mandi/commodity prices, demand and climate signals — a rich picture of real rural economic activity, with zero personal data.",
+    body: "Pravah blends self-reported financials with anonymised UPI proxies, mandi/commodity prices, demand and climate signals, a rich picture of real rural economic activity, with zero personal data.",
   },
   {
     n: "02",
     title: "Forecast & flag, explainably",
-    body: "Sector-aware models project cash flow 3–6 months ahead and a gradient-boosted classifier flags financial stress early — every number carries a plain-language 'why'.",
+    body: "Sector-aware models project cash flow 3-6 months ahead and a gradient-boosted classifier flags financial stress early, every number carries a plain-language 'why'.",
   },
   {
     n: "03",
@@ -39,7 +39,7 @@ export const NOVELTIES = [
   {
     icon: "🛡️",
     title: "Alternative-data scoring, no PII",
-    body: "Forecasts built from proxy signals — UPI velocity, mandi prices, weather — not personal or account data. Solves the thin-file problem at the heart of rural credit.",
+    body: "Forecasts built from proxy signals, UPI velocity, mandi prices, weather, not personal or account data. Solves the thin-file problem at the heart of rural credit.",
     tag: "Financial inclusion",
   },
   {
@@ -51,13 +51,13 @@ export const NOVELTIES = [
   {
     icon: "🧬",
     title: "Sector digital twins",
-    body: "Purpose-built cash-flow models for dairy, poultry, food processing, handicrafts and rural retail — each with its own seasonality and shock sensitivities.",
+    body: "Purpose-built cash-flow models for dairy, poultry, food processing, handicrafts and rural retail, each with its own seasonality and shock sensitivities.",
     tag: "Precision",
   },
   {
     icon: "🌪️",
     title: "Climate & market what-if simulator",
-    body: "Drag a slider — 'monsoon delayed 3 weeks', 'feed +15%' — and watch the forecast and risk re-rate live. Proactive, not reactive.",
+    body: "Drag a slider, 'monsoon delayed 3 weeks', 'feed +15%', and watch the forecast and risk re-rate live. Proactive, not reactive.",
     tag: "Foresight",
   },
   {
@@ -69,7 +69,7 @@ export const NOVELTIES = [
   {
     icon: "🪜",
     title: "Grant-to-credit pipeline",
-    body: "A transparent credit-readiness scorecard plus concrete action playbooks graduate enterprises from grants toward formal credit — exactly NABARD's mission.",
+    body: "A transparent credit-readiness scorecard plus concrete action playbooks graduate enterprises from grants toward formal credit, exactly NABARD's mission.",
     tag: "Impact",
   },
 ];
@@ -85,7 +85,7 @@ export const VALUE_CREATION = [
   },
   {
     title: "A digital public good",
-    body: "An open, API-first layer for enterprise profiling, cash-flow assessment and risk monitoring — common infrastructure for the ecosystem.",
+    body: "An open, API-first layer for enterprise profiling, cash-flow assessment and risk monitoring, common infrastructure for the ecosystem.",
   },
   {
     title: "Better beneficiary outcomes",

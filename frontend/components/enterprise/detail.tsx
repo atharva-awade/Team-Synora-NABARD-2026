@@ -105,7 +105,7 @@ export function EnterpriseDetailView({ id, owner = false }: { id: string; owner?
           tone={v.liquidity_runway_months < 1.5 ? "risk" : v.liquidity_runway_months < 3 ? "watch" : "good"} />
         <Vital icon={Activity} label={t("vitals.volatility")} value={`${(v.income_volatility * 100).toFixed(0)}`} unit="%"
           tone={v.income_volatility > 1 ? "risk" : v.income_volatility > 0.5 ? "watch" : "good"} />
-        <Vital icon={Gauge} label={t("vitals.repay")} value={v.repayment_capacity === null ? "—" : `${v.repayment_capacity.toFixed(1)}×`} unit="of EMI"
+        <Vital icon={Gauge} label={t("vitals.repay")} value={v.repayment_capacity === null ? "n/a" : `${v.repayment_capacity.toFixed(1)}×`} unit="of EMI"
           tone={v.repayment_capacity !== null && v.repayment_capacity < 1 ? "risk" : "good"} />
         <Vital icon={Wallet} label={t("vitals.ncf")} value={formatINR(v.avg_monthly_net_cashflow)} unit="/ month"
           tone={v.avg_monthly_net_cashflow < 0 ? "risk" : "good"} />

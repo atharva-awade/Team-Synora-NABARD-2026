@@ -10,7 +10,7 @@ const IslandScene = dynamic(() => import("@/components/three/island-scene"), { s
  * Fixed, full-page 3D backdrop for the landing route. The flying island stays
  * pinned to the viewport while the camera revolves around it as the whole page
  * scrolls. It is bright in the hero and eases to a faint ambient presence behind
- * the content sections so text stays readable. Landing-only — never mounted in
+ * the content sections so text stays readable. Landing-only, never mounted in
  * the dashboards.
  */
 export function IslandBackdrop() {

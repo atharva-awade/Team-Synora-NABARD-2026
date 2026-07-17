@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Animated light/dark toggle. A sliding sun/moon thumb with a soft glow and a
- * spring transition — light is the default state (thumb on the left / sun).
+ * spring transition, light is the default state (thumb on the left / sun).
  */
 export function ThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();

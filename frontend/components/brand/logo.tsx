@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Pravah wordmark with a "flow" glyph — three stacked flowing strokes. */
+/** Pravah wordmark with a "flow" glyph, three stacked flowing strokes. */
 export function Logo({ className, showText = true }: { className?: string; showText?: boolean }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>

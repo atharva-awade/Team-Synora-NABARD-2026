@@ -4,7 +4,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ----------------------------------------------------------------------------
-   Design tokens — Pravah
+   Design tokens, Pravah
    Light is the default. Warm off-white canvas, deep teal-emerald brand
    (growth + finance), harvest-gold accent, calm rural-premium feel.
 ---------------------------------------------------------------------------- */

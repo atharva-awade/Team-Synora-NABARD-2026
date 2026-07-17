@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Pravah — Cash-Flow Intelligence for Rural India",
+    name: "Pravah: Cash-Flow Intelligence for Rural India",
     short_name: "Pravah",
     description:
       "AI cash-flow prediction & risk flagging for rural micro-enterprises. Explainable, offline-first, privacy-safe.",

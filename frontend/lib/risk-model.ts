@@ -4,7 +4,7 @@ import type { Bundle, HistoryPoint } from "./types";
 
 /**
  * On-device early-warning inference. The gradient-boosting ensemble is shipped
- * as compact JSON (risk_trees.json) and evaluated here in ~20 lines — the exact
+ * as compact JSON (risk_trees.json) and evaluated here in ~20 lines, the exact
  * same model that runs on the server, now running in the browser with zero
  * network and zero runtime dependencies. This is real edge AI for the last mile.
  */
@@ -57,7 +57,7 @@ function slope(y: number[]): number {
 
 /**
  * Recompute the financial risk features from an (extended) history and merge
- * with the external-pressure features from the current snapshot — so an owner's
+ * with the external-pressure features from the current snapshot, so an owner's
  * freshly entered figures move the on-device risk score sensibly.
  */
 export function riskFeaturesFrom(
