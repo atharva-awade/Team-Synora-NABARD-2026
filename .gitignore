@@ -47,8 +47,10 @@ AGENTS.md
 .aider*
 
 # ---- Docs / markdown (kept out of the repo by request) ----
+# Everything markdown stays out EXCEPT the top-level project README.
 *.md
 !.keep
+!/README.md
 
 # ---- Source problem statement & private material ----
 *.pdf
