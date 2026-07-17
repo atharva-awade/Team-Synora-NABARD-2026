@@ -85,12 +85,16 @@ function FlyThrough({
 
   const curve = useMemo(() => {
     const hx = fitted.x / 2, hy = fitted.y / 2, hz = fitted.z / 2;
+    // A weaving path that stays INSIDE the city footprint the whole way (all
+    // |z| < hz) so the camera never flies out into empty space — it descends
+    // from an establishing view down into the streets and travels the length.
     return new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0.25 * hx, 1.7 * hy, hz * 1.4),
-      new THREE.Vector3(-0.2 * hx, 1.15 * hy, hz * 0.5),
-      new THREE.Vector3(0.16 * hx, 0.55 * hy, 0),
-      new THREE.Vector3(-0.16 * hx, 1.0 * hy, -hz * 0.55),
-      new THREE.Vector3(0.2 * hx, 1.55 * hy, -hz * 1.4),
+      new THREE.Vector3(0.20 * hx, 1.75 * hy, 0.90 * hz),
+      new THREE.Vector3(-0.28 * hx, 1.05 * hy, 0.55 * hz),
+      new THREE.Vector3(0.32 * hx, 0.55 * hy, 0.18 * hz),
+      new THREE.Vector3(-0.30 * hx, 0.6 * hy, -0.20 * hz),
+      new THREE.Vector3(0.24 * hx, 0.9 * hy, -0.55 * hz),
+      new THREE.Vector3(-0.10 * hx, 1.35 * hy, -0.88 * hz),
     ], false, "catmullrom", 0.5);
   }, [fitted]);
 
@@ -224,12 +228,12 @@ export default function VillageScene({
   return (
     <Canvas
       frameloop={active ? "always" : "never"}
-      camera={{ position: [10, 12, 45], fov: 55, near: 0.1, far: 400 }}
+      camera={{ position: [6, 12, 26], fov: 50, near: 0.1, far: 400 }}
       dpr={[1, maxDpr]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
-        gl.toneMappingExposure = 1.15;
+        gl.toneMappingExposure = 1.2;
       }}
     >
       <ambientLight intensity={0.65} />

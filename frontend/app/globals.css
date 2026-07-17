@@ -56,8 +56,8 @@
   --border-strong: rgba(255, 255, 255, 0.16);
 
   --ink: #e9f2ee;
-  --ink-muted: #93a49c;
-  --ink-faint: #63736c;
+  --ink-muted: #9fb0a8;
+  --ink-faint: #7f8f88;
 
   --brand: #24bfa9;
   --brand-deep: #0f8074;
@@ -176,7 +176,10 @@ html.lenis, html.lenis body { height: auto; }
   }
 
   .text-gradient-brand {
-    background: linear-gradient(120deg, var(--brand-deep), var(--brand-bright) 60%, var(--accent));
+    /* Start from --brand (theme-appropriate: readable teal in light, bright
+       teal in dark) rather than --brand-deep, which was too dark on the dark
+       theme. High contrast in both themes. */
+    background: linear-gradient(120deg, var(--brand), var(--brand-bright) 50%, var(--accent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

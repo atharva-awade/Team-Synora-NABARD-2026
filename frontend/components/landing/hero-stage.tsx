@@ -39,7 +39,7 @@ export function HeroStage() {
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    setMaxDpr(window.matchMedia("(max-width: 768px)").matches ? 1.25 : 1.6);
+    setMaxDpr(window.matchMedia("(max-width: 768px)").matches ? 1.5 : 2);
     setReady(true);
     const el = stageRef.current;
     if (!el) return;
@@ -49,7 +49,7 @@ export function HeroStage() {
   }, []);
 
   return (
-    <section ref={stageRef} className="relative h-[260vh]">
+    <section ref={stageRef} className="relative h-[450vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* 3D fly-through */}
         <div className="absolute inset-0">

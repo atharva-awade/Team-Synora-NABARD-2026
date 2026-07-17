@@ -53,7 +53,7 @@ export function HowItWorks() {
         {STEPS.map((step, i) => (
           <Reveal key={step.n} delay={i}>
             <div className="card-lg h-full p-7">
-              <div className="font-display text-5xl font-semibold text-brand-soft">{step.n}</div>
+              <div className="font-display text-5xl font-semibold text-brand/30">{step.n}</div>
               <h3 className="mt-3 text-xl font-semibold text-ink">{step.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">{step.body}</p>
             </div>
@@ -150,7 +150,7 @@ export function Personas() {
               </ul>
               <Link
                 href={p.href}
-                className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-brand-deep"
+                className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-brand-bright"
               >
                 {p.cta} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
