@@ -165,16 +165,6 @@ html.lenis, html.lenis body { height: auto; }
 @layer utilities {
   .font-display { font-family: var(--font-display), Georgia, serif; }
 
-  /* Theme-aware halo so hero copy stays crisp over the vivid 3D scene
-     (no full-screen "cloud" scrim needed). */
-  .hero-glow {
-    text-shadow: 0 1px 2px var(--text-halo), 0 3px 22px var(--text-halo),
-      0 0 40px var(--text-halo);
-  }
-  .hero-glow-soft {
-    text-shadow: 0 1px 3px var(--text-halo), 0 2px 16px var(--text-halo);
-  }
-
   .text-gradient-brand {
     /* Start from --brand (theme-appropriate: readable teal in light, bright
        teal in dark) rather than --brand-deep, which was too dark on the dark

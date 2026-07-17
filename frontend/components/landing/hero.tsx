@@ -24,13 +24,13 @@ export function Hero() {
       {/* subtle grid texture over the global island backdrop */}
       <div className="grid-bg radial-fade absolute inset-0 -z-[1]" />
 
-      {/* light, contained legibility scrim behind the copy column only — keeps
-          the island clear (not cloudy); the text glow does the heavy lifting */}
+      {/* clean, contained legibility scrim behind the copy — no text glow, so
+          the type stays crisp with no fuzzy halo, while the island reads clearly */}
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            "radial-gradient(ellipse 52% 50% at 50% 44%, color-mix(in srgb, var(--bg) 45%, transparent) 0%, transparent 72%)",
+            "radial-gradient(ellipse 58% 60% at 50% 46%, color-mix(in srgb, var(--bg) 66%, transparent) 0%, color-mix(in srgb, var(--bg) 30%, transparent) 48%, transparent 80%)",
         }}
       />
 
@@ -56,7 +56,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="hero-glow font-display text-5xl font-semibold leading-[1.02] tracking-tight text-ink sm:text-6xl md:text-7xl"
+          className="font-display text-5xl font-semibold leading-[1.02] tracking-tight text-ink sm:text-6xl md:text-7xl"
         >
           See the cash flow
           <br />
@@ -67,7 +67,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7 }}
-          className="hero-glow-soft mt-6 max-w-2xl text-lg font-medium leading-relaxed text-ink"
+          className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted"
         >
           Pravah forecasts cash flow and flags financial stress for rural micro-enterprises —
           learning from UPI, market and climate signals, never personal data. Explainable,
@@ -96,7 +96,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.7 }}
-          className="hero-glow-soft mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-muted"
         >
           {badges.map((b) => (
             <span key={b.label} className="inline-flex items-center gap-1.5">
