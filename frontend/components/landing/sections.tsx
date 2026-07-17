@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
 import Link from "next/link";
 import { ArrowRight, Building2, UserRound, Check } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { Tilt } from "@/components/ui/interactive";
 import { SIGNALS, STEPS, NOVELTIES } from "@/lib/constants";
 
 function SectionHeading({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
@@ -77,19 +77,17 @@ export function Novelties() {
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {NOVELTIES.map((n, i) => (
             <Reveal key={n.title} delay={i % 3}>
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="card group relative h-full overflow-hidden p-7"
-              >
-                <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-soft opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="text-3xl">{n.icon}</div>
-                <div className="mt-4 inline-block rounded-full bg-surface-2 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-ink-faint">
-                  {n.tag}
+              <Tilt max={7} className="h-full">
+                <div className="card group relative h-full overflow-hidden p-7 transition-shadow duration-300 hover:shadow-[var(--shadow-lg)]">
+                  <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-brand-soft opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="text-3xl" style={{ transform: "translateZ(30px)" }}>{n.icon}</div>
+                  <div className="mt-4 inline-block rounded-full bg-surface-2 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-ink-faint">
+                    {n.tag}
+                  </div>
+                  <h3 className="mt-3 text-lg font-semibold text-ink">{n.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{n.body}</p>
                 </div>
-                <h3 className="mt-3 text-lg font-semibold text-ink">{n.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{n.body}</p>
-              </motion.div>
+              </Tilt>
             </Reveal>
           ))}
         </div>

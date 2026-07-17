@@ -43,6 +43,7 @@
   --shadow-brand: 0 18px 40px -14px rgba(15, 128, 116, 0.45);
 
   --grid-line: rgba(20, 32, 28, 0.04);
+  --text-halo: rgba(251, 250, 247, 0.82);
 }
 
 .dark {
@@ -80,6 +81,7 @@
   --shadow-brand: 0 20px 45px -14px rgba(36, 191, 169, 0.35);
 
   --grid-line: rgba(255, 255, 255, 0.035);
+  --text-halo: rgba(4, 8, 7, 0.78);
 }
 
 @theme inline {
@@ -162,6 +164,16 @@ html.lenis, html.lenis body { height: auto; }
 ---------------------------------------------------------------------------- */
 @layer utilities {
   .font-display { font-family: var(--font-display), Georgia, serif; }
+
+  /* Theme-aware halo so hero copy stays crisp over the vivid 3D scene
+     (no full-screen "cloud" scrim needed). */
+  .hero-glow {
+    text-shadow: 0 1px 2px var(--text-halo), 0 3px 22px var(--text-halo),
+      0 0 40px var(--text-halo);
+  }
+  .hero-glow-soft {
+    text-shadow: 0 1px 3px var(--text-halo), 0 2px 16px var(--text-halo);
+  }
 
   .text-gradient-brand {
     background: linear-gradient(120deg, var(--brand-deep), var(--brand-bright) 60%, var(--accent));

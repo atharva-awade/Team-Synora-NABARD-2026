@@ -5,6 +5,7 @@ import { useInView } from "motion/react";
 import { ArrowRight, Code2 } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
+import { Magnetic } from "@/components/ui/interactive";
 import { Logo } from "@/components/brand/logo";
 import { METRICS, VALUE_CREATION } from "@/lib/constants";
 
@@ -143,12 +144,16 @@ export function CTA() {
               real models running end to end.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href="/app" size="lg" variant="secondary" className="!bg-white !text-brand-deep">
-                Launch the platform <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button href="/officer" size="lg" variant="ghost" className="!text-white hover:!bg-white/10">
-                Field-officer view
-              </Button>
+              <Magnetic>
+                <Button href="/app" size="lg" variant="secondary" className="!bg-white !text-brand-deep">
+                  Launch the platform <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Magnetic>
+              <Magnetic>
+                <Button href="/officer" size="lg" variant="ghost" className="!text-white hover:!bg-white/10">
+                  Field-officer view
+                </Button>
+              </Magnetic>
             </div>
           </div>
         </div>
