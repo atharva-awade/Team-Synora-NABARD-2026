@@ -10,7 +10,7 @@ const PRECACHE = [
   "/data/pravah_bundle.json",
   "/models/risk_trees.json",
   "/models/risk.onnx",
-  "/models/solarpunk_village.glb",
+  "/models/flying-island.glb",
   "/icon.svg",
 ];
 
